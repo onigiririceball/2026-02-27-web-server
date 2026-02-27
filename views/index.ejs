@@ -6,15 +6,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>top</title>
+  <style>
+    td, th { padding: 0 40px; }
+  </style>
 </head>
 
 <body>
   <ul class = "user-list">
-    <% for (const user of users) { %>
-      <li class="user-name"><%= user %></li>
-    <% } %>
-  </ul>
-  <input type="text" class="input-text" />
+    <table>
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const user of users) { %>
+                <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.age %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+  <input type="text" class="input-name" placeholder="name" />
+  <input type="text" class="input-age" placeholder="age" />
   <button class="send-button">送信</button>
   <script src="/static/index.js" defer></script>
 </body>

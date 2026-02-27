@@ -19,8 +19,8 @@ async function main() {
   const db = client.db('my-app');
 
   app.get('/', async (req, res) => {//npm install ejsが必要
-    const { names } = await getUsers(db);
-    res.render(path.resolve(__dirname, 'views/index.ejs'), { users: names });
+    const { users } = await getUsers(db);
+    res.render(path.resolve(__dirname, 'views/index.ejs'), { users: users});
   });
 
 
@@ -28,8 +28,9 @@ async function main() {
   //post:データベースにデータを追加する
   //api/userにデータを送信する
   app.post('/api/user', express.json(), async (req, res) => {
-    const name = req.body.name;//ユーザのリクエストの中にnameが入っていたらそれを取り出して入れる
-    const { status, body } = await insertUser(name, db);
+    const name = req.body.name;
+    const age = req.body.age;
+    const { status, body } = await insertUser(name, age, db);
     res.status(status).send(body);
   });
 

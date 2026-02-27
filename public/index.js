@@ -9,10 +9,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     // 送信ボタンをクリックしたらユーザー名を送信
     document.querySelector('.send-button').addEventListener('click', (event) => {
-        const inputValue = document.querySelector('.input-text').value;
-        //alert(inputValue);
-        //const element = document.createElement('li');
-        fetch('/api/user', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: inputValue }) })
+        const inputName = document.querySelector('.input-name').value;
+        const inputAge = document.querySelector('.input-age').value;
+        if (!inputName || !inputAge) {
+            alert('name and age are required');
+            return;
+        }
+        fetch('/api/user', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: inputName, age: inputAge }) })
     });
     
   });
