@@ -20,7 +20,13 @@ async function main() {
 
   app.get('/', async (req, res) => {//npm install ejsが必要
     const { users } = await getUsers(db);
-    res.render(path.resolve(__dirname, 'views/index.ejs'), { users: users});
+    res.render(path.resolve(__dirname, 'views/index.ejs'), { users: users, query: '' });
+  });
+
+  app.get('/search', async (req, res) => {
+    const query = req.query.query || '';
+    const { users } = await getUsers(db, query);
+    res.render(path.resolve(__dirname, 'views/index.ejs'), { users: users, query: query });
   });
 
 

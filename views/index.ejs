@@ -23,8 +23,8 @@
         <tbody>
             <% for (const user of users) { %>
                 <tr>
-                    <td><%= user.name %></td>
-                    <td><%= user.age %></td>
+                    <td><%- query && user.name ? user.name.replace(new RegExp(query, 'gi'), m => `<mark>${m}</mark>`) : (user.name || '') %></td>
+                    <td><%- query && user.age ? user.age.replace(new RegExp(query, 'gi'), m => `<mark>${m}</mark>`) : (user.age || '') %></td>
                 </tr>
             <% } %>
         </tbody>
@@ -32,6 +32,9 @@
   <input type="text" class="input-name" placeholder="name" />
   <input type="text" class="input-age" placeholder="age" />
   <button class="send-button">送信</button>
+  <br>
+  <input type="text" class="search" placeholder="search" />
+  <button class="search-button">検索</button>
   <script src="/static/index.js" defer></script>
 </body>
 

@@ -17,5 +17,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         fetch('/api/user', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: inputName, age: inputAge }) })
     });
+
+    // 検索ボタンをクリックしたら検索結果を表示
+    document.querySelector('.search-button').addEventListener('click', (event) => {
+        const query = document.querySelector('.search').value;
+        location.href = `/search?query=${query}`;
+    })
     
   });

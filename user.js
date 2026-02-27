@@ -14,8 +14,13 @@ async function insertUser(name, age, db) {
 
 exports.insertUser = insertUser;
 
-async function getUsers(db) {
+async function getUsers(db, search) {
     try {
+        //searchがある場合は、searchに合致するデータを取得
+        if (search) {
+            const users = await db.collection('user').find({ name: { $regex: search } }).toArray();
+            return { users: users };
+        }
         //users配列の中はオブジェクト
         const users = await db.collection('user').find().toArray();//users:データベースからとってきた値(find())をtoArray()
      //map:配列の中の要素を一つずつ取り出して、新しい配列を作る
