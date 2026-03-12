@@ -23,12 +23,9 @@ async function getUsers(db, search) {
         }
         //users配列の中はオブジェクト
         const users = await db.collection('user').find().toArray();//users:データベースからとってきた値(find())をtoArray()
-     //map:配列の中の要素を一つずつ取り出して、新しい配列を作る
-        const names = users.map((user) => { return user.name });
-        const ages = users.map((user) => { return user.age });
         return { users: users };
     } catch (e) {
-        return  { names: [] };
+        return  { users: [] };
     }
 }
 exports.getUsers = getUsers;
