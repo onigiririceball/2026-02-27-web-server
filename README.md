@@ -31,12 +31,21 @@ web/
 # MongoDBをDockerで起動
 docker run --rm --name=my-app-db -p 27017:27017 mongo
 
-# サーバーを起動
+# Expressサーバーを起動
 node index.js
+
+#viteサーバを起動
+npm run dev
 ```
 
 ### テスト実行
 ```bash
-node --test
+node --test user.test.js
 ```
+
+### 今後取り組むこと
+1. React+viteを使用して現時点で実際に多く採用されている仕様に近づける
+2. ログの追加
+3. 登録後に自動更新できるようにUX改善
+4. テスト改善: 異常系と境界値を増やす
 
